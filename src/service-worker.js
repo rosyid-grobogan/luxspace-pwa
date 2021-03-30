@@ -11,7 +11,9 @@ import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate } from 'workbox-strategies';
+// import { NetworkFirst } from 'workbox-strategies';
+// import { StaleWhileRevalidate } from 'workbox-strategies';
+import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies';
 
 clientsClaim();
 
@@ -50,7 +52,10 @@ registerRoute(
 // precache, in this case same-origin .png requests like those from in public/
 registerRoute(
   // Add in any other file extensions or routing criteria as needed.
-  ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
+  // ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
+  ({ url }) =>
+    url.origin === self.location.origin &&
+    /\.(jpe?g|png|svg|ico)$/i.test(url.pathname),
   new StaleWhileRevalidate({
     cacheName: 'images',
     plugins: [
@@ -70,3 +75,45 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+//  TODO: tambahan
+// case 1
+// self.addEventListener('install', function (event) {
+//   console.log('SW Install');
+//   const asyncInstall = new Promise(function (resolve) {
+//     console.log('WS Install menunggu install sampai finis');
+//     setTimeout(resolve, 5000);
+//   });
+//   event.waitUntil(asyncInstall);
+// });
+// self.addEventListener('activate', function (event) {
+//   console.log('SW Activate');
+// });
+
+// case 2
+self.addEventListener('install', function (event) {
+  console.log('SW Install');
+  const asyncInstall = new Promise(function (resolve) {
+    console.log('Waiting... menunggu install sampai finis');
+    setTimeout(resolve, 5000);
+  });
+  event.waitUntil(asyncInstall);
+});
+self.addEventListener('activate', function (event) {
+  console.log('SW Activate');
+});
+
+// register font
+registerRoute(
+  ({ url }) =>
+    url.origin === 'https://fonts.googleapis.com' ||
+    url.origin === 'https://fonts.gstatic.com',
+  new NetworkFirst({
+    cacheName: 'fonts',
+    plugins: [
+      new ExpirationPlugin({
+        maxAgeSeconds: 60 * 60 * 24 * 356,
+        maxEntries: 30,
+      }),
+    ],
+  })
+);
