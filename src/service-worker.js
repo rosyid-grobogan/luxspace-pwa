@@ -117,3 +117,30 @@ registerRoute(
     ],
   })
 );
+
+// cache api json
+registerRoute(
+  ({ url }) => url.origin.includes('qorebase.io'),
+  new NetworkFirst({
+    cacheName: 'apidata',
+    plugins: [
+      new ExpirationPlugin({
+        maxAgeSeconds: 360,
+        maxEntries: 30,
+      }),
+    ],
+  })
+);
+
+// register gambar dari qorebase
+registerRoute(
+  ({ url }) => /\.(jpe?g|png)$/i.test(url.pathname),
+  new StaleWhileRevalidate({
+    cacheName: 'apiImages',
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 30,
+      }),
+    ],
+  })
+);
