@@ -49,7 +49,7 @@ function Arrived({ items }) {
                 />
               </div>
               <h5 className='text-lg font-semibold mt-4'>MockUP</h5>
-              <span className>Rp 35</span>
+              <span>Rp 35</span>
               <a href='/details' className='stretched-link'>
                 {/* fake children */}
               </a>
@@ -82,7 +82,7 @@ function Arrived({ items }) {
                 />
               </div>
               <h5 className='text-lg font-semibold mt-4'>MockUP</h5>
-              <span className>Rp 35</span>
+              <span>Rp 35</span>
               <a href='/details' className='stretched-link'>
                 {/* fake children */}
               </a>
@@ -115,7 +115,7 @@ function Arrived({ items }) {
                 />
               </div>
               <h5 className='text-lg font-semibold mt-4'>MockUP</h5>
-              <span className>Rp 35</span>
+              <span>Rp 35</span>
               <a href='/details' className='stretched-link'>
                 {/* fake children */}
               </a>
@@ -149,7 +149,7 @@ function Arrived({ items }) {
                 />
               </div>
               <h5 className='text-lg font-semibold mt-4'>MockUP</h5>
-              <span className>Rp 35</span>
+              <span>Rp 35</span>
               <a href='/details' className='stretched-link'>
                 {/* fake children */}
               </a>
@@ -183,7 +183,7 @@ function Arrived({ items }) {
                 />
               </div>
               <h5 className='text-lg font-semibold mt-4'>MockUP</h5>
-              <span className>Rp 35</span>
+              <span>Rp 35</span>
               <a href='/details' className='stretched-link'>
                 {/* fake children */}
               </a>
@@ -217,7 +217,7 @@ function Arrived({ items }) {
                 />
               </div>
               <h5 className='text-lg font-semibold mt-4'>MockUP</h5>
-              <span className>Rp 35</span>
+              <span>Rp 35</span>
               <a href='/details' className='stretched-link'>
                 {/* fake children */}
               </a>
