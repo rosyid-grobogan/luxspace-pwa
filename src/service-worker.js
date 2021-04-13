@@ -144,3 +144,13 @@ registerRoute(
     ],
   })
 );
+
+// push notif
+self.addEventListener('push', function (event) {
+  event.waitUntil(
+    self.registration.showNotification('LuxSpace', {
+      icon: '/icons/icon-120.png',
+      body: event.data.text(),
+    })
+  );
+});
